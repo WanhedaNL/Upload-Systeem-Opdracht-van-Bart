@@ -1,21 +1,24 @@
-<?php 
+<?php
 session_start();
-$username=$_POST['username'];
-$password=$_POST['password'];
-$sql="SELECT * FROM users WHERE username='$username' AND password='$password'";
-$ressult=$conn->query($sql);
-if($ressult->num_rows>0){
-    $_SESSION['username']=$username;
-    header("Location: index.php");
-    echo "Login successful";
-}else {
-    echo "Invalid username or password";
+include "db.php";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    $sql = "SELECT * FROM users WHERE username='$username' AND password='$password'";
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+        $_SESSION['username'] = $username;
+        header("Location: index.php");
+        exit();
+    } else {
+        echo "Invalid username or password";
+    }
 }
-
-
-
 ?>
-
 
 
 
@@ -31,7 +34,7 @@ if($ressult->num_rows>0){
         <h1>Login</h1>
     </header>
     <main>
-        <form action=" login.php ">
+        <form action=" login.php " method="post">
             <label for="username">User Name:</label>
             <input type="text" id="username" name="username" required><br><br>
             <label for="password">Password:</label>
