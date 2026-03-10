@@ -4,8 +4,6 @@ if (!isset($_SESSION['username'])) {
     header("Location: login.php");
     exit();
 }
-
-
 ?>
 
 
@@ -17,9 +15,29 @@ if (!isset($_SESSION['username'])) {
     <title>Document</title>
 </head>
 <body>
-    <h1>Welcome to the Home Page</h1>
-    <p>Hello, <?php echo $_SESSION['username']; ?>!</p>
+    <main>
+        <h1>Welcome, <?php echo $_SESSION['username']; ?>!</h1>
+        <article>
+            <form action="admin.php" method="post" enctype="multipart/form-data">
+                <label for="file">Upload a file:</label>
+                <input type="file" id="file" name="file"><br><br>
+                <input type="submit" value="Upload" required="fold">
+
+
+            </form>
+        </article>
+        
+    
+    
+    
+    
     <a href="logout.php">Logout</a>
+
+
+
+
+</main>
+    
     
 </body>
 </html>
