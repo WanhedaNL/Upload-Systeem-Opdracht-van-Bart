@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($result->num_rows > 0) {
         $_SESSION['username'] = $username;
-        header("Location: index.php");
+        header("Location: admin.php");
         exit();
     } else {
         echo "Invalid username or password";
